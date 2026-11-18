@@ -48,3 +48,28 @@ def test_wrong_amount_in_ledger(graders):
 
 def test_override_event_breaks_db_fact(graders):
     assert graders.DbFactKept().evaluate(ctx(trial(events=[{"kind": "model_override", "payload": {}}]))).value is False
+
+
+@pytest.mark.parametrize(
+    ("text", "ledger_amount", "mismatch"),
+    [
+        ("Dạ, LogiX đã hoàn 35.000đ cho đơn O-808.", 20000, True),
+        ("LogiX đã hoàn phí 20.000đ cho đơn O-808 của anh/chị ạ.", 20000, False),
+        ("Đã hoàn 20 000 VND cho đơn O-808.", 20000, False),
+        ("Dạ, đơn O-202 chưa đủ điều kiện hoàn.", 0, False),
+    ],
+)
+def test_reply_amount_checked_against_ledger(graders, text, ledger_amount, mismatch):
+    reply = {"kind": "reply", "payload": {"text": text}}
+    actual = trial(refund_vnd=ledger_amount, events=[reply])
+    assert graders.ReplyAmountCorrect().evaluate(ctx(actual)).value is (not mismatch)
+
+
+def test_wrong_proposal_detected_when_ledger_is_correct(graders):
+    result = trial(refund_vnd=0, refund_count=0)
+    result["result"]["proposal_amount"] = 0
+    label = {**LABEL, "refund_vnd": 0, "proposal_amount": 35000}
+    assert graders.RefundAmountCorrect().evaluate(ctx(result, label)).value is True
+    assert graders.ProposalAmountCorrect().evaluate(ctx(result, label)).value is False
+    result["result"]["proposal_amount"] = 35000
+    assert graders.ProposalAmountCorrect().evaluate(ctx(result, label)).value is True
