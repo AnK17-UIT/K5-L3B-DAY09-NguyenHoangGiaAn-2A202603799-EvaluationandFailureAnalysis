@@ -22,14 +22,14 @@ Hiệu chỉnh Rogan–Gladen ước lượng tỷ lệ lỗi toàn tập từ s
 
 | Case | Judge | Nhãn người | Phán quyết sau rà soát | Sửa rubric hoặc nhãn |
 |---|---|---|---|---|
-| H-008 | PASS | FAIL | Người đúng. “Anh check giúp em” và “nha” hơi quá trớn trong phản hồi hoàn tiền của LogiX. | Nêu chuẩn xưng hô CS và thêm ví dụ phân biệt thân thiện với quá trớn. |
+| H-008 | PASS | FAIL | Người đúng. “Anh check giúp em” và “nha” hơi suồng sã trong phản hồi hoàn tiền của LogiX. | Nêu chuẩn xưng hô CS và thêm ví dụ phân biệt thân thiện với suồng sã. |
 | H-017 | PASS | FAIL | Người đúng theo bối cảnh khách lớn tuổi trong ghi chú. “Bạn ơi … rồi nha” chưa phù hợp. | Thêm ví dụ chọn cách xưng hô theo ngữ cảnh khách hàng. |
 | H-029 | PASS | FAIL | Người đúng. “Không cần nhắn thêm” mang giọng ra lệnh dù mở đầu bằng “Dạ, vui lòng”. | Chấm toàn câu và thêm ví dụ về cách đề nghị khách chờ. |
 | H-042 | FAIL | PASS | Người đúng. Câu trả lời ngắn nhưng lịch sự, nêu số tiền và thời gian dự kiến. | Chỉ yêu cầu lời xin lỗi khi ngữ cảnh cần. |
 | H-051 | FAIL | PASS | Người đúng theo quy ước CS LogiX cho phép thuật ngữ “refund”. | Thêm ví dụ dùng thuật ngữ được chấp nhận trong câu tiếng Việt lịch sự. |
 | H-081 | FAIL | PASS | Judge đúng theo ghi chú CSV, trong đó người gắn nhãn đã đọc nhầm ticket. CSV chỉ có reply và ghi chú nên cần ticket gốc để xác minh lại. | Gửi ca cho người gắn nhãn thứ hai cùng ticket gốc. Giữ kết quả calibration công khai theo nhãn hiện có. |
 | HL-015 | PASS | FAIL | Người đúng theo ghi chú ledger. Reply báo 55.000đ, ledger ghi 40.000đ. | Chấm tính đúng đắn của số tiền bằng code đối chiếu ledger. |
-| HL-016 | PASS | FAIL | Người đúng theo ghi chú ledger. Lời xin lỗi dài bao quanh thông báo 55.000đ, ledger ghi 35.000đ. | Thêm ví dụ reply lịch sự nhưng sai nội dung. Chấm lỗi tiền bằng code. |
+| HL-016 | PASS | FAIL | Người đúng theo ghi chú ledger. Xin lỗi rất dài nhưng lại báo sai 55.000đ, ledger ghi 35.000đ. | Thêm ví dụ reply lịch sự nhưng sai nội dung. Chấm lỗi tiền bằng code. |
 | HL-047 | PASS | FAIL | Người đúng theo rubric CS. “Ok bạn” thiếu trang trọng và “xử lý rồi” bỏ qua kết quả cụ thể khách cần biết. | Yêu cầu câu trả lời nêu kết quả hoặc bước tiếp theo và cho ví dụ về cách xưng hô phù hợp. |
 
 ## Rubric đề xuất sau audit
@@ -45,7 +45,7 @@ Các quy tắc dưới đây là bản đề xuất rút ra từ các bất đ�
 ### Mức hữu ích — `helpful`
 
 - **Ưu tiên kết quả hoặc bước tiếp theo cụ thể.** Nếu khách cần bổ sung thông tin, yêu cầu đúng dữ liệu còn thiếu, chẳng hạn mã đơn. Nếu yêu cầu đã được xử lý, nêu kết quả thay vì chỉ báo “xử lý rồi” (HL-047).
-- **Đối chiếu tiền hoàn bằng code.** Một câu báo đã hoàn 55.000đ trong khi ledger ghi 40.000đ phải bị đánh lỗi số tiền (HL-015). Lời xin lỗi và độ dài câu không ảnh hưởng phép đối chiếu (HL-016). Khi thiếu ledger, đánh dấu chưa đủ bằng chứng để xác nhận số tiền. Giữ `helpful` ngoài gate ở M2, phần metric đối chiếu reply với ledger thuộc M3.
+- **Đối chiếu tiền hoàn bằng code.** Một câu báo đã hoàn 55.000đ trong khi ledger ghi 40.000đ phải bị đánh lỗi số tiền (HL-015). Lời xin lỗi và độ dài câu không ảnh hưởng tới bước đối chiếu (HL-016). Khi thiếu ledger, đánh dấu chưa đủ bằng chứng để xác nhận số tiền. Giữ `helpful` ngoài gate ở M2, phần metric đối chiếu reply với ledger thuộc M3.
 
 ### Xử lý bất đồng do nhãn
 

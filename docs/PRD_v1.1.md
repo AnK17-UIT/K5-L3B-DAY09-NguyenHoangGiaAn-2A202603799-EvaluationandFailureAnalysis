@@ -55,10 +55,10 @@ Quy tắc: tiền và phê duyệt luôn chấm bằng code. Judge chỉ dùng c
 - Quy trình ngoại lệ đề xuất yêu cầu cả Product và Eval owner duyệt, ghi lý do, phạm vi và thời hạn vào PR. Mọi vi phạm về tiền hoặc phê duyệt phải được xử lý trước release.
 
 ## 6. Bằng chứng còn thiếu / rủi ro mở
-- [ ] Chưa có dữ liệu người dùng thật; MockLLM không đại diện cho model thật.
-- [ ] 14 item: CI rộng, chỉ bắt được hồi quy lớn.
-- [ ] Judge replay trên CSV đã công khai, chưa có tập held-out mới.
-- [ ] GitHub Actions chưa chạy trên PR. Các bước gate Core đã được kiểm tra local.
+- [x] Chưa có dữ liệu người dùng thật; MockLLM không đại diện cho model thật.
+- [x] 14 item: CI rộng, chỉ bắt được hồi quy lớn.
+- [x] Judge replay trên CSV đã công khai, chưa có tập held-out mới.
+- [x] GitHub Actions chưa chạy trên PR. Các bước gate Core đã được kiểm tra local.
 
 ## 7. Khi nào lên v1.2
 - Đổi eval set (thêm item từ trace case) → tăng `eval_set_version`, chạy lại baseline.
